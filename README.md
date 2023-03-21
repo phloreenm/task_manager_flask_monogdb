@@ -8,14 +8,13 @@
 - create env.py file for sensitive data: ```touch env.py ```
 - add 'env.py' and '__pycache__/' dir to .gitignore file list
 - add confidential data to env.py:
-    ````    import os
-    
-            os.environ.setdefault("IP", "0.0.0.0")
-            os.environ.setdefault("PORT", "5000")
-            os.environ.setdefault("SECRET_KEY", "generated_password at https://randomkeygen.com/")
-            os.environ.setdefault("MONGO_URI", "")
-            os.environ.setdefault("MONGO_DBNAME", "database_name")
-    ````
+    ``` import os```
+    ``` []space[] ```
+    ``` os.environ.setdefault("IP", "0.0.0.0")```
+    ``` os.environ.setdefault("PORT", "5000")```
+    ``` os.environ.setdefault("SECRET_KEY", "generated_password at https://randomkeygen.com/")```
+    ``` os.environ.setdefault("MONGO_URI", "")```
+    ``` os.environ.setdefault("MONGO_DBNAME", "database_name")```
 - in app.py file:
     - create the imports-
     - check if env.py
@@ -24,10 +23,10 @@
                                          def hello():
                                             return "Hello World ... again!"
                                     ```
-    - add: ``` if __name__ == "__main__":
-                app.run(host=os.environ.get("IP"),
-                        port=int(os.environ.get("PORT")),
-                        debug=True) // True for development, False for production```
+    - add: ``` if __name__ == "__main__":   ```
+             ```   app.run(host=os.environ.get("IP"),```
+                 ```       port=int(os.environ.get("PORT")),```
+                ```        debug=True) // True for development, False for production```
 - type in terminal ``` python3/python app.py ``` -> this will run without any DB
 - to kill all instances of a running app: ``` pkill -9 python3 ```
 
@@ -47,6 +46,22 @@
     ``` pip3 install flask-pymongo ```
     ``` pip3 install dnspython ``` - to use mongodb srv connection string
 - update req file: ``` pip3 freeze --local > requirements.txt ```
+- add new imports to app.py:
+    ``` from flask_pymongo import PyMongo```
+    ```from bson.objectid import ObjectId```
+- configure app:
+    ```app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")```
+    ```app.config["MONGO_URI"] = os.environ.get("MONGO_URI")```
+    ```app.secret_key = os.environ.get("SECRET_KEY")```
+
+    
+- from MongoDB webpage get the Connect string for the application ```mongodb+srv://<username>:<password>@<cluster_name>.<something>.mongodb.net/?retryWrites=true&w=majority``` and paste this in the env.py file and in the Settings->Config Vars in Heroku Dashboared of the app and update ```MONGO_URI```.
+- assure Flask is communicaing with MongoDB: 
+    ```mongo = PyMongo(app)```
+
+
+
+
 
 ## Gitpod Reminders
 

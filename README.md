@@ -39,6 +39,14 @@
 - go to app's Settings -> Config Vars -> add all variable from the env.py local files (the env.py is not included in the repository)
 - go to Deploy tabe and enable Automatic Deployments, after you've push the latest changes in this repo.
 - Select DEPLOY branch
+- If deploying is fayling with error ``` Push failed: cannot parse Procfile. ```, save the Procfile in UTF8 char file.
+- SUCCESS!
+
+## **Connect Flask to MongoDB Atlas:**
+- install 3rd party lib:
+    ``` pip3 install flask-pymongo ```
+    ``` pip3 install dnspython ``` - to use mongodb srv connection string
+- update req file: ``` pip3 freeze --local > requirements.txt ```
 
 ## Gitpod Reminders
 

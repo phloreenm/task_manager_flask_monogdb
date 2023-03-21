@@ -1,10 +1,34 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome USER_NAME,
-
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
-
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+## **Begin project:**
+- create database on MongoDB:
+    - create Database -> DB name -> collection name (first collection in this db)
+- instal Flask: in terminal type ``` pip3 install Flask ```
+- create python file: ``` touch app.py ```
+- create env.py file for sensitive data: ```touch env.py ```
+- add 'env.py' and '__pycache__/' dir to .gitignore file list
+- add confidential data to env.py:
+    ````    import os
+    
+            os.environ.setdefault("IP", "0.0.0.0")
+            os.environ.setdefault("PORT", "5000")
+            os.environ.setdefault("SECRET_KEY", "generated_password")
+            os.environ.setdefault("MONGO_URI", "")
+            os.environ.setdefault("MONGO_DBNAME", "database_name")
+    ````
+- in app.py file:
+    - create the imports-
+    - check if env.py
+    - create an instance of the flask app
+        - create the default route:  ``` @app.route("/")
+                                         def hello():
+                                            return "Hello World ... again!"
+                                    ```
+    - add: ``` if __name__ == "__main__":
+                app.run(host=os.environ.get("IP"),
+                        port=int(os.environ.get("PORT")),
+                        debug=True) // True for development, False for production```
+- type in terminal ``` python3 app.py ```
 
 ## Gitpod Reminders
 

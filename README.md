@@ -35,7 +35,10 @@
 - setup files that Heroku needs:
     ``` pip3 freeze --local > requirements.txt ```
     ``` echo web: python app.py > Procfile ```
-
+- go to Heroku, create new App, connect the GitHub repository of this project to Heroku
+- go to app's Settings -> Config Vars -> add all variable from the env.py local files (the env.py is not included in the repository)
+- go to Deploy tabe and enable Automatic Deployments, after you've push the latest changes in this repo.
+- Select DEPLOY branch
 
 ## Gitpod Reminders
 

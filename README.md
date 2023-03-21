@@ -58,8 +58,13 @@
 - from MongoDB webpage get the Connect string for the application ```mongodb+srv://<username>:<password>@<cluster_name>.<something>.mongodb.net/?retryWrites=true&w=majority``` and paste this in the env.py file and in the Settings->Config Vars in Heroku Dashboared of the app and update ```MONGO_URI```.
 - assure Flask is communicaing with MongoDB: 
     ```mongo = PyMongo(app)```
-
-
+- create a new route:
+    ```@app.route("/get_tasks")```
+    ```def get_tasks():```
+    ``` tasks = mongo.db.tasks.find()```
+    ``` return render_template("tasks.html", tasks=tasks)```
+- create templates folder ```mkdir templates```
+- make tasks.html file: ``` touch templates/tasks.html``` and populate with bolierplate html5
 
 
 

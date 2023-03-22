@@ -1,5 +1,6 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
+# Steps into creating a basic Flask app, conect it to the database, create templates.
 ## **Create BASIC Flask project:**
 - create database on MongoDB:
     - create Database -> DB name -> collection name (first collection in this db)
@@ -53,8 +54,6 @@
     ```app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")```
     ```app.config["MONGO_URI"] = os.environ.get("MONGO_URI")```
     ```app.secret_key = os.environ.get("SECRET_KEY")```
-
-    
 - from MongoDB webpage get the Connect string for the application ```mongodb+srv://<username>:<password>@<cluster_name>.<something>.mongodb.net/?retryWrites=true&w=majority``` and paste this in the env.py file and in the Settings->Config Vars in Heroku Dashboared of the app and update ```MONGO_URI```.
 - assure Flask is communicaing with MongoDB: 
     ```mongo = PyMongo(app)```
@@ -65,6 +64,7 @@
     ``` return render_template("tasks.html", tasks=tasks)```
 - create templates folder ```mkdir templates```
 - make tasks.html file: ``` touch templates/tasks.html``` and populate with boilerplate html5
+
 ## **Create template inheritance base file**
 - create base.html file in templates/ folder: ```touch templates/base.html```
 - use the boiler plate html:5 to generate html basic code in base.html
@@ -83,6 +83,14 @@
                ``` {{ task.completed }}<br>```
             ```{% endfor %}``` - closing the for loop
         ```{% endblock %}``` - end of injected content
+
+## **Materialize & Static Files Setup**
+- Within the base.html template add:
+    - Materialize CDN for compiled and minified CSS at the top in header element.
+    - Materialize CDN for compiled and minified JS at the bottom of body element.
+- Create static/ folder and inside create css/ and js/ folders. In css/ folder create style.css file and inside js/ folder create script.js file.
+- In the base.html file add the static ginger url_for method for the css ``` href="{{ url_for('static', filename = 'css/style.css') }} ``` and js ``` src="{{ url_for('static', filename = 'js/script.js') }}" ``` files.
+- In base.html file add blocks for our own customs style ```{% block styles %} custom css here {% endblock %}``` and scripts ``` {% block scripts %}customs scripts here{% endblock %}```, which are applied/injected from one of our child templates, as needed.
 
 
 ## Gitpod Reminders

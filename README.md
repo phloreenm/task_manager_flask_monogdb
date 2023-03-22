@@ -61,11 +61,28 @@
 - create a new route:
     ```@app.route("/get_tasks")```
     ```def get_tasks():```
-    ``` tasks = mongo.db.tasks.find()```
+    ``` tasks = mongo.db.<collection_name>.find()```
     ``` return render_template("tasks.html", tasks=tasks)```
 - create templates folder ```mkdir templates```
-- make tasks.html file: ``` touch templates/tasks.html``` and populate with bolierplate html5
-
+- make tasks.html file: ``` touch templates/tasks.html``` and populate with boilerplate html5
+## **Create template inheritance base file**
+- create base.html file in templates/ folder: ```touch templates/base.html```
+- use the boiler plate html:5 to generate html basic code in base.html
+- in base.html in the content area use jinja blocks:
+    ``` {% block content %}``` - the 'content' string must match the one in the tasks.html, otherwise it won't know what to match for injection.
+    ``` {% endblock %}``` to indicate where to inject the content from the templates.
+- in the tasks.html file delete content and add jinja blocks:
+        ```{% extends "base.html" %}``` - this indicates it used the base.html as template in which it will inject the folowwing content
+        ```{% block content %}``` - this is the injected content
+           ``` {% for task in tasks %}``` - something to do: it uses the tasks variable, send as parameter from the router function
+               ``` {{ task.task_name }}<br>```
+                ```{{ task.category_name }}<br>```
+               ``` {{ task.task_description }}<br>```
+               ``` {{ task.is_urgent }}<br>```
+                ```{{ task.due_date }}<br>```
+               ``` {{ task.completed }}<br>```
+            ```{% endfor %}``` - closing the for loop
+        ```{% endblock %}``` - end of injected content
 
 
 ## Gitpod Reminders
